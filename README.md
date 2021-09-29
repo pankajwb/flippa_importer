@@ -1,2 +1,2 @@
-# flippa_importer
-A small snippet to import data from Flippa API
+# ninja form add submission to post
+A small snippet to add form data to post
