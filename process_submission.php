@@ -2,7 +2,7 @@
 /* Functions to add ninja form submission
 */
 //add_filter('ninja_forms_submit_data', 'custom_ninja_forms_submit_data');
-add_action('nd_register_preprocess', 'nd_register'); // nd_register needs to added as a wp hook in ninja form submission settings
+add_action('nd_register_preprocess', 'nd_register'); // nd_register needs to be added as a wp hook in ninja form submission settings
 function custom_ninja_forms_submit_data($form_data)
 {
 	$form_id       = $form_data[ 'form_id' ];
@@ -111,13 +111,8 @@ function custom_ninja_forms_submit_data($form_data)
        update_post_meta ( $pid, 'wpcf-email_id', $email ); //email_id
     }
     if ( ! add_post_meta( $pid, 'wpcf-phone',$mobile  ) ) { 
-		update_post_meta ( $pid, 'wpcf-phone',$mobile);
-//        	update_post_meta ( $pid, 'wpcf-mobile_number',$mobile); //mobile_number 
-		
+		update_post_meta ( $pid, 'wpcf-phone',$mobile);		
     }
-//     if ( ! add_post_meta( $pid, 'wpcf-provider-qualification',$qual  ) ) { 
-//        update_post_meta ( $pid, 'wpcf-provider-qualification',$qual  );
-//     }
 	if (!empty($qual)) { 
        update_post_meta ( $pid, 'wpcf-qualification', $qual );
     }
@@ -129,10 +124,7 @@ function custom_ninja_forms_submit_data($form_data)
 	$admin_email = get_option( 'admin_email' );
     $to = array($email,$admin_email);
     $subject = 'Nayi Disha provider registration';
-//     $body = 'Please click here to verify your email: <a href="'.$url.'/verify-email?userid='.$nuser.'&uname='.$mobile.'&key='.$temppasskey.'">'.$url.'/verify-email?userid='.$nuser.'&uname='.$mobile.'&key=test123</a>';
-//     $body .= '<br>';
-//     $body .= ' For manual verification the OTP is '.$mailotp;
-	$body = 'Dear Provider - Thank you for registering with Nayi Disha resource center. To complete your registration process please click on the below link:<br />';
+	$body = 'Dear Provider - Thank you for registering with '.home_url().' resource center. To complete your registration process please click on the below link:<br />';
 	$body.='<a href="'.$url.'/verify-email?userid='.$nuser.'&uname='.$mobile.'&key='.$temppasskey.'">'.$url.'/verify-email?userid='.$nuser.'&uname='.$mobile.'&key=test123</a>';
     $body .= '<br>';
     $body .= 'Or enter the OTP '.$mailotp;
